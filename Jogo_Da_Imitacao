@@ -1,0 +1,242 @@
+# Jogo da Imitação
+# Resumo
+No filme "o jogo da imitação(2014)" a máquina enigma utilizada pelos alemães é baseada no modelos enigma m3. Essa versão era a padrão. Utilizada pela marinha(Kriegsmarine) e pelo exercito (heer) alemão. Embora existissem diversas variantes da enigma Alan Turing e sua equipe em Bletchey Park.
+O modelor M3 utilizava 3 rotones móveis escolhidos de um conjunto disponível o que gerava milhões de combinações.
+O painel de conexões (Steckerbrett) localizado na parte frontal, essa era a "Arma secreta" da enigma, pois aumenta exponencialmente a complexidade da criptogrofia ao trocar letras antes mesmo de passarem pelos rotores. desing de caixa de madeira a estética fiel de uma caixa de carvalho com o teclado de 26 letras e as luzes indicadorad(lâmpadas). É importante não confundir a máquina enigma( que codifica as mensagens) com a máquina que turing constrói no filme para decifrá-las. No filme Turing chama seu computador eletromecênico de "Christopher". Na realidade essa máquina se chama "bombe" e foi baseada em um desing incial de criptógrafos poloneses, sendo posteriormente aperfeiçoada por tuing e gordan welchman. 
+Antigamente, as versões de "uso comercial" em uma "arma de guerra matemática".
+A matemática do caos:
+O funcionamento era simples na prática, mas devastador na teoria: o operador usava cabos para conectar pares de letras no painel. Se ele conectasse "A" com "Z" sempre que a tecla "A" fosse pressionada, o sinal elétrico entrava na máquina como se fosse um "Z" (vice-versa) antes mesmo de chegar aos rotones. 
+Sem o painel frontal a máquina tinha cerca de 12,576% posições de rotor. Complicado mas possível de testar manualmente com o tempo. Com o painel (usando 10 cabos) o número de combinações saltava para aproximadamente 158 quintilhões. 
+Por que isso "quebrava" a mente humana?
+Imagine que você descobriu a configuração exata dos rotones para aquele dia. Se o painel de conexões fosse alterado, todo o seu trabalho seria inútil. O painel criava uma camada de "substituição simple" mas que mudava o " ponto de entrada" e o "ponto de saída" de cada letra. Sem saber quais letras estavam trocadas no painel, os analistas não conseguiam nem começar a testar as posições dos rotones, pois o resultado nas lâmpadas seria sempre um lixo iletrado.
+O pulo do gato de Turing:
+A genialidade de Alan Turing e da máquina "Bombe" foi percerber que existia uma falha lógica: uma letra nunca poderia ser cifrada como ela mesma. Ele usou berços(palavras que ele sabiam que estavam na mensagem, como previsão do tempo ou "hell Hitler" para procurar contradições lógicas e aliminar milhões de combinações do painel de conexões e dos rotones de uma só vez algo que um humano levaria séculos para fazer.
+Estrutura da enigma: a máquina tinha 5 partes principais
+1)teclado(26letras)
+2)plugboard(steckrbrett) trocava letras aos pares
+3) rotores(3) faziam a substituição variável
+4)refletor - devolvia o sinal por outro caminho
+5) painel de lâmpadas mostrava a letra criptografada
+Passo a passo da criptografia:
+Queremos criptografar a letra "A"
+1) plogboard
+se tiver configurado A<->M então antes de entrar nos rotores: "A" vira "M"(senão houver cada ligado, continua "A" mesmo)
+2) rotores (caminho de IDA)
+o sinal passa pelos 3 rotores exemplo fictício: M>Q>T>L
+cada rotor altera a letra dependendo da posição em que está e aqui esta o segredo:
+a cada tecla pressionada o primeiro rotor gira. Isso muda toda a substituição seguinte
+3) refletor:
+letra chega no refletor: L>G o refletor devolve o sinal por um caminho diferente
+4) rotores (caminho de volta) agora o sinal volta pelos rotores mas por outro circuito interno
+G>X>P>C
+5) plugboard novamente
+se C tiver ligado a Z C>Z
+Resultado final:
+A letra "A" virou "Z"
+Se você digitar "Z" um a mesma configuração a máquina devolve "A"
+
+o conceito chave: CRIB
+Os criptógrafos perceberam algo essencial: os alemães repetiam frases padrão nas mensagens
+Exemplos comuns:
+relatórios meteorológicos começando com Wetter
+mensagens navais iniciando com ANX
+Saudações formais 
+Estruturas de comunicação
+Essas palavras suspeitas eram chamadas de CRIBS ( palpites estruturados)
+Eles não sabiam a chave da máquina mas suspeitavam que determinada palavra aparecia em certo ponto da mensagem
+2) uma fraqueza importante na enigma
+a enigma tinha uma regra fundamental uma letra nunca podia virar ela mesma isso eliminava varias combinações impossíveis imediatamente suponha que eles suspeitem que a palavra wetter esta em determinado trecho da mensagem eles alinhavam a palavra com o trecho cifrado e verifica se em algum ponto: W>W, E>E isso é impossível e a configuração é descartada.
+4) o truque genial das cadeias lógicas se w criptografado vira x , x discriptografado vira W mas essa relação passa pelos rotores e pelo plugboard. A bombe conectava essas relações em um circuito elétrico.
+W>X
+X>P
+P>R
+R>W
+Se em algum ponto surgir uma contradição (ex:letra vira ela mesma) a configuração é descartada automaticamente
+5)o que a bombe fazia na prática?
+-simulava varias máquinas enigma ao mesmo tempo
+-testava rapidamente posições dos rotores 
+-pirava quando encontrava uma configuração "sem contradições"
+-não era a resposta final ainda.
+
+era apenas um "candidato forte" que os criptógrafos testavam manualmente depois por que foi revolucionário? invés de testar 150 trilhões de combinações todos os dias entre seis da manhã e meia noite. A bombe reduzia drasticamente o espaço de busca usando:
+-repetição humana
+-erros operacionais
+-estrutura previsível de mensagens militares
+-a regra "nenhuma letra vira ela mesma"
+
+erro dos alemães:
+-eles seguiam protocolos rígidos demais
+-as mensagens tinham formato previsível
+-as vezes repetiam partes da mensagem duas vezes.
+
+estima-se que a quebra de enigma tenha encurtado 2 anos e salva 14 milhões de pessoas. 
+
+# Resolução de exercícios - Teoria da Computação 
+
+## Perguntas e Justificativas
+
+### 1. c) Segunda Guerra Mundial
+
+**Justificativa:**
+O filme ocorre durante a *World War II* (1939–1945), quando os Aliados tentavam decifrar os códigos militares alemães para prever ataques e estratégias.
+
+---
+
+### 2. b) Bletchley Park
+
+**Justificativa:**
+O centro britânico de decifração de códigos era o **Bletchley Park**, onde matemáticos, linguistas e criptógrafos trabalhavam secretamente para quebrar as mensagens alemãs.
+
+---
+
+### 3. b) Tom Jericho
+
+**Justificativa:**
+O protagonista é o matemático **Tom Jericho**, personagem fictício que trabalha em Bletchley Park tentando quebrar códigos da Enigma.
+
+---
+
+### 4. b) Claire Romilly
+
+**Justificativa:**
+A personagem interpretada por **Kate Winslet** se chama **Claire Romilly**, que ajuda Jericho a investigar o desaparecimento de uma colega e a decifrar pistas.
+
+---
+
+### 5. d) Enigma
+
+**Justificativa:**
+A máquina usada pelos alemães era a **Enigma machine**, um dispositivo eletromecânico de criptografia usado para codificar comunicações militares.
+
+---
+
+### 6. b) Decifrar códigos militares alemães
+
+**Justificativa:**
+O objetivo central dos criptógrafos era quebrar as mensagens criptografadas enviadas pela Alemanha para descobrir movimentos militares.
+
+---
+
+### 7. c) Matemática e criptografia
+
+**Justificativa:**
+Jericho é um matemático especializado em **criptografia**, área da matemática que estuda técnicas para codificar e decodificar informações.
+
+---
+
+### 8. b) Suspense e drama histórico
+
+**Justificativa:**
+O filme mistura suspense (investigação e espionagem) com drama histórico ambientado na Segunda Guerra.
+
+---
+
+### 9. a) Hester Wallace
+
+**Justificativa:**
+A história envolve o desaparecimento da criptógrafa **Hester Wallace**, colega de trabalho de Jericho em Bletchley Park.
+
+---
+
+### 10. b) Guerra naval no Atlântico
+
+**Justificativa:**
+As mensagens decifradas estavam relacionadas principalmente à guerra naval, especialmente aos submarinos alemães que atacavam comboios aliados no Atlântico.
+
+---
+
+### 11. d) Reino Unido
+
+**Justificativa:**
+Kate Winslet é uma atriz britânica nascida no **United Kingdom**.
+
+---
+
+### 12. b) Acelerar o fim da guerra
+
+**Justificativa:**
+A quebra da Enigma ajudou os Aliados a antecipar estratégias alemãs, encurtando a guerra em aproximadamente **2 anos**, segundo historiadores.
+
+---
+
+### 13. b) Sigilo absoluto
+
+**Justificativa:**
+O trabalho em Bletchley Park era extremamente secreto. Muitas pessoas só souberam da importância do local décadas depois da guerra.
+
+---
+
+### 14. c) 2001
+
+**Justificativa:**
+O filme *Enigma* foi lançado em **2001**.
+
+---
+
+### 15. b) Robert Harris
+
+**Justificativa:**
+O filme é baseado no romance *Enigma* escrito por **Robert Harris**.
+
+---
+
+### 16. c) Alemanha Nazista
+
+**Justificativa:**
+A máquina Enigma era usada pelas forças armadas da **Alemanha Nazista** para criptografar mensagens militares.
+
+---
+
+### 17. b) Matemática
+
+**Justificativa:**
+A história mostra como matemática e lógica foram essenciais para resolver problemas complexos de criptografia durante a guerra.
+
+---
+
+### 18. a) Estratégias militares
+
+**Justificativa:**
+Decifrar os códigos permitia antecipar ataques e organizar melhor as estratégias dos Aliados.
+
+---
+
+### 19. b) Mistério e tensão
+
+**Justificativa:**
+O filme possui atmosfera de investigação, espionagem e perigo, mantendo suspense ao longo da narrativa.
+
+---
+
+### 20. c) Inteligência, espionagem e guerra
+
+**Justificativa:**
+A narrativa enfatiza a importância da inteligência militar, da espionagem e da análise criptográfica no contexto da guerra.
+
+---
+
+# Resumo das Respostas
+
+```
+1. C
+2. B
+3. B
+4. B
+5. D
+6. B
+7. C
+8. B
+9. A
+10. B
+11. D
+12. B
+13. B
+14. C
+15. B
+16. C
+17. B
+18. A
+19. B
+20. C
+```
+
